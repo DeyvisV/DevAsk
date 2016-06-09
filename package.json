@@ -1,0 +1,10 @@
+{
+  "name": "dev-ask",
+  "version": "1.0.0",
+  "description": "Questions and Answers App",
+  "main": "server.js",
+  "author": "Deyvis Valdez <deyvis.vh@gmail.com>",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
