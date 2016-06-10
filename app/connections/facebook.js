@@ -11,7 +11,7 @@ let facebookConnection = function (server){
         callbackURL: 'http://localhost:8000/auth/facebook/callback',
         scope: ['public_profile', 'email', 'user_friends'],
         profileFields: ['id', 'email', 'displayName', 'first_name', 'last_name']
-    }, function(accessToken, RefreshToken, profile, done){
+    }, function (accessToken, RefreshToken, profile, done){
         done(null, profile);
     }));
 

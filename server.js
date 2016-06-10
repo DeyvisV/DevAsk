@@ -45,9 +45,10 @@ server.use(express.static('./public'));
 
 // Controllers
 require('./app/controllers/home')(server);
+require('./app/controllers/user')(server);
 
 // Connections
 require('./app/connections/facebook')(server);
-
+require('./app/connections/twitter')(server);
 
 server.listen(8000);
