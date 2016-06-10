@@ -6,7 +6,18 @@ let homeController = function (server) {
     server.route('/')
 
         .get(function(req, res){
-            res.render('home/index');
+            //console.log(req.user);
+            if (req.user) {
+                let name = req.user._json.first_name;
+                let url_foto = 'http://graph.facebook.com/'+req.user.id+'/picture';
+                res.render('home/index', {
+                    name: name,
+                    url_foto: url_foto
+                });
+            }
+            else {
+                res.render('home/index');
+            }
         });
 };
 
