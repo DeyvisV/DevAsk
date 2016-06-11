@@ -2,11 +2,11 @@
 
 const path = require('path');
 const express = require('express');
-const bodyParser = require('body-parser');
 const swig = require('swig');
 const passport = require('passport');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 
 const server = express();
 
@@ -15,9 +15,9 @@ swig.setDefaults({
 });
 
 // Config Express
-server.use(cookieParser());
-server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({extended: true}));
+server.use(bodyParser.json());
+server.use(cookieParser());
 server.use(session({
     secret: 'mi clave',
     resave: true,

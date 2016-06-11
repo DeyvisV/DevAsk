@@ -5,8 +5,8 @@ let homeController = function (server) {
 
     server.route('/')
 
-        .get(function (req, res){
-            //console.log(req.user);
+        .get(function (req, res) {
+            console.log(req.user);
             if (req.user) {
                 let name, url_foto;
                 if (req.user.provider == 'facebook') {
