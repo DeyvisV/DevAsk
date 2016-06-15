@@ -27,22 +27,22 @@
             </div>
             
             <div id="question" style="padding-top: 10px">
-            {% for data in questions %}
+            {% for question in questions %}
 
                 <div class="media border">
                     <a class="pull-left" href="#">
-                        <img src="{{ data.user.url_foto }}" class="img-circle" />
+                        <img src="{{ question.user.url_foto }}" class="img-circle" />
                     </a>
                     <div class="media-body">
                         <h4 class="media-heading">
-                            <a href="/detalle"><span class="usuario">{{ data.user.username }}</span></a>
+                            <a href="/detalle"><span class="usuario">{{ question.user.username }}</span></a>
                             <small class="pull-right"><span class="glyphicon glyphicon-time"></span>
-                                {{ data.created | date('d / m / y') }}
+                                {{ question.created | date('d / m / y') }}
                             </small>
                         </h4>
                         <p>
-                            <a href="/pregunta/{{ data.slug }}">
-                                {{ data.content }}
+                            <a href="/pregunta/{{ question.slug }}">
+                                {{ question.content }}
                             </a>
                         </p>
                         <p>

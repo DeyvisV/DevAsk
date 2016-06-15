@@ -33,7 +33,8 @@ let userController = function (server) {
                     username: username,
                     email: email,
                     first_name: req.user.name.givenName,
-                    last_name: req.user.name.familyName
+                    last_name: req.user.name.familyName,
+                    url_foto: 'http://graph.facebook.com/'+req.user.id+'/picture'
                 });
                 user.save(function(err) {
                     if (err) {
@@ -49,6 +50,7 @@ let userController = function (server) {
                     username: username,
                     email: email,
                     first_name: req.user.displayName,
+                    url_foto: req.user.photos[0].value
                 });
                 user.save(function(err) {
                     if (err) {

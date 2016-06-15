@@ -42,18 +42,18 @@
             </div> 
 
             <div class="well well-lg">
-                {% for data in answer %}
+                {% for answer in answers %}
                 <div class="media border">
                     <a class="pull-left" href="#">
-                    <img src="{{ data.user.url_foto }}" class="img-circle" />
+                    <img src="{{ answer.user.url_foto }}" class="img-circle" />
                     </a>
                     <div class="media-body">
                         <h4 class="media-heading">
-                            <a href=""><span class="usuario"> {{ data.user.username }}</span></a>
-                            <small class="pull-right"><span class="glyphicon glyphicon-time"></span> {{ data.created | date('d / m / y') }}</small>
+                            <a href=""><span class="usuario"> {{ answer.user.username }}</span></a>
+                            <small class="pull-right"><span class="glyphicon glyphicon-time"></span> {{ answer.created | date('d / m / y') }}</small>
                         </h4>
                         <p>
-                            {{ data.content }}
+                            {{ answer.content }}
                         </p>
                     </div>
                 </div>

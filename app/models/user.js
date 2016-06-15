@@ -8,7 +8,8 @@ let userSchema = new Schema({
     username: { type: String, required: true, index: { unique:true } },
     email: { type: String, required: true },
     first_name: { type: String },
-    last_name: { type: String }
+    last_name: { type: String },
+    url_foto: { type: String }
 });
 
 let User = mongoose.model('user', userSchema);
