@@ -48,7 +48,7 @@ server.use(express.static('./public'));
 
 // Controllers
 require('./app/controllers/home')(server);
-require('./app/controllers/user')(server);
+require('./app/controllers/user')(server, io);
 require('./app/controllers/discuss')(server, io);
 
 // Connections

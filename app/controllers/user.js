@@ -1,12 +1,49 @@
 'use strict'
 
 const User = require('../models/user');
+const logged = require('../middlewares/logged');
+const getUser = require('../middlewares/getuser');
 
-let userController = function (server) {
+let users = [];
+
+let userController = function (server, io) {
+
+    let io2 = io.of('/chat');
+
+    io2.on('connection', function (socket) {
+        socket.join('chat');
+        
+        socket.on('nuevo usuario', function (data) {
+            socket.broadcast.to('chat').emit('devolviendo usuario', data);
+        });
+
+        socket.on('nuevo mensaje', function (data) {
+            io2.to('chat').emit('devolviendo mensaje', data);
+        });
+    });
+
+    server.route('/chat')
+
+        .get(logged, getUser, function (req, res) {
+            let user = {
+                username: req.user.username,
+                url_foto: req.user.url_foto
+            }
+            users.push(user);
+            res.render('user/chat', {
+                users: users,
+                username: req.user.username,
+                url_foto: req.user.url_foto
+            });
+        });
     
     server.route('/logout')
 
-        .get(function (req, res) {
+        .get(getUser, function (req, res) {
+            users = users.filter(function (el) {
+                return el.username !== req.user.username;
+            });
+            io2.in('chat').emit('logout', req.user);
             req.logout();
             res.redirect('/');
         });
@@ -59,7 +96,6 @@ let userController = function (server) {
                     }
                 });
             }
-
             res.redirect('/');
         });
 }

@@ -66,11 +66,21 @@
 	<script>
 		var socket = io('/chat');
 
+		$('#enviar-chat').on('click', agregarChat);
+
+		$(document).on("keypress", enviarChat);
+
+		function enviarChat(valor) {
+			if (valor.which == 13) {
+				agregarChat();
+			}
+		}
 		$(document).on("ready", function(){
 			var datos = {
 				username : '{{ user }}',
 				foto : '{{ url_foto }}'
 			}
+
 			socket.emit('nuevo usuario', datos);
 		});
 
@@ -83,6 +93,7 @@
 		socket.on('logout', function(data){
 			$('#conectados li').each(function (i, item){
 				username = item.innerText.replace(/\s/g,'');
+				console.log(username);
 				if(username == data.username){
 					$(item).remove();
 				}
@@ -99,13 +110,14 @@
 		});
 
 		socket.on('devolviendo mensaje', function(data){
-			console.log(data);
 			agregarChat(data);
 		});
 
 
 		function agregarChat(data){
-			console.log(data);
+
+			var chat = $('#dialog').val();
+
 			var ahora = new Date();
 			var stringAhora = ahora.toLocaleString(); 	
 
@@ -128,8 +140,6 @@
 			}
 
 			$("#dialog").val("");
-			
-
 		}
 		
 	</script>

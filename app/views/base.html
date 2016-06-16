@@ -17,7 +17,7 @@
 		                     <a class="navbar-brand " href="/"><span class="titulo">DevAsk</span></a>
 		                </div>
 		                <ul class="nav navbar-nav navbar-right">
-		                	{% if not name %}
+		                	{% if not username %}
 		                		<li class="dropdown">
 			                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 			                            <strong>Menú</strong>
@@ -33,7 +33,7 @@
 			                	<li class="dropdown">
 			                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 			                        	<img src="{{ url_foto }}" alt="..." class="img-rounded" width="32px" height="32px">
-			                            <strong>{{ name }}</strong>
+			                            <strong>{{ username }}</strong>
 			                            <span class="glyphicon glyphicon-chevron-down"></span>
 			                        </a>
 			                        <ul class="dropdown-menu">
@@ -55,7 +55,7 @@
 
 		{% endblock %}
 
-		<!-- <script src="http://localhost:8000/socket.io/socket.io.js"></script> -->
+		<script src="http://localhost:8000/socket.io/socket.io.js"></script>
 		<script src="/js/jquery.js"></script>
         <script src="/js/bootstrap.min.js"></script> 
         {% block js %}
