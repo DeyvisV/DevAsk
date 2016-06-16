@@ -108,15 +108,17 @@
     $('#myModal').modal('hide');
 </script>
 
+<script src='http://localhost:8000/socket.io/socket.io.js'></script>
 <script>
-    /*var socket = io();
+    var socket = io();
     socket.on('preguntando', function (data){
         console.log(data);
 
         var html = '<div class="media border"><a class="pull-left" href="#"><img src="'+ data.url_foto +'" class="img-circle" /></a><div class="media-body"><h4 class="media-heading"><a href="/detalle"><span class="usuario">'+ data.username +'</span></a><small class="pull-right"><span class="glyphicon glyphicon-time"></span>'+ data.created +'</small></h4><p><a href="/pregunta/'+ data.slug +'">'+ data.content +'</a></p><p><a href=""><span class="label label-warning pull-right "><span class="glyphicon glyphicon-star"></span>Favoritos </span> </a><span class="label pull-right "> </span><a href=""><span class="label label-warning pull-right "><span class="glyphicon glyphicon-thumbs-up"></span> Like </span> </a></p></div></div>';
         
         $('#question').prepend(html);
-    });*/
+    });
 </script>
 {% endblock %}
 
+ 

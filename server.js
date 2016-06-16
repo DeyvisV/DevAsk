@@ -2,6 +2,7 @@
 
 const path = require('path');
 const express = require('express');
+const http = require('http');
 const swig = require('swig');
 const passport = require('passport');
 const session = require('express-session');
@@ -9,6 +10,8 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
 const server = express();
+const server_socket = http.createServer(server).listen(8000);
+const io = require('socket.io').listen(server_socket);
 
 swig.setDefaults({
     cache: false
@@ -46,10 +49,8 @@ server.use(express.static('./public'));
 // Controllers
 require('./app/controllers/home')(server);
 require('./app/controllers/user')(server);
-require('./app/controllers/discuss')(server);
+require('./app/controllers/discuss')(server, io);
 
 // Connections
 require('./app/connections/facebook')(server);
 require('./app/connections/twitter')(server);
-
-server.listen(8000);

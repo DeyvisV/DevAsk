@@ -7,7 +7,12 @@ const logged = require('../middlewares/logged');
 const getUser = require('../middlewares/getuser');
 const slugs =require('slugs');
 
-let discussController = function (server) {
+let discussController = function (server, io) {
+
+    io.on('connection', function (socket) {
+        socket.join('home');
+        console.log('usuario');
+    });
     
     server.route('/guardar-pregunta')
 
@@ -24,6 +29,12 @@ let discussController = function (server) {
                     console.log('error');
                     return;
                 }
+                io.to('home').emit('preguntando', {
+                    username: req.user.username,
+                    url_foto: req.user.url_foto,
+                    content: req.body.content,
+                    created: question.created
+                });
             });
             res.redirect('/');
         });
